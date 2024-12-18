@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Targeting Robot with Firing System - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <h1>Autonomous Targeting Robot with Projectile-Firing System</h1>
+        <p>
+            Built from scratch in a mechatronics setting, this robot was designed to navigate autonomously, orient itself 
+            reliably, and fire small balls into designated targets. The primary aim was to demonstrate a self-contained 
+            system that integrates sensors, actuators, control logic, and mechanical prototyping into a cohesive and 
+            repeatable process.
+        </p>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#overview">Overview & Objectives</a></li>
+            <li><a href="#mechanical-design">Mechanical Design & Shooter Mechanism</a></li>
+            <li><a href="#electronics-power">Electronics & Power Management</a></li>
+            <li><a href="#software-strategy">Software Strategy & State Machine</a></li>
+            <li><a href="#orientation">Orientation & Positioning</a></li>
+            <li><a href="#bom">Bill of Materials & Cost Analysis</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="overview">
+            <h2>1. Overview & Objectives</h2>
+            <p>
+                The autonomous targeting robot’s purpose was to operate within a timed “game” environment:
+                load balls in a “studio” area, move out to the playing field, and fire balls into press buckets—either our 
+                “good” bucket or the opponent’s “bad” bucket. A key objective was quick and precise orientation in the 
+                loading zone to ensure consistent shooting angles and repeatable scoring. We focused heavily on robust 
+                orientation methods and a reliable firing mechanism.
+            </p>
+            <p>
+                The final system could:
+            </p>
+            <ul>
+                <li>Navigate out of a confined space</li>
+                <li>Orient itself against walls using ultrasonic sensors and physical alignment</li>
+                <li>Fire small balls using a custom-built flywheel-based shooter</li>
+                <li>Return to the loading zone, reorient, and repeat the cycle</li>
+                <li>Toggle targets via a button input to switch between aiming at “good” or “bad” press buckets</li>
+            </ul>
+        </section>
+
+        <section id="mechanical-design">
+            <h2>2. Mechanical Design & Shooter Mechanism</h2>
+            <p>
+                The mechanical design aimed to keep the drivetrain simple and robust. The robot used two DC drive 
+                motors for translational and rotational movement. We prioritized durability and quick iteration during 
+                testing phases. The primary mechanical challenge was the projectile-firing subsystem.
+            </p>
+            <h3>Shooter Development</h3>
+            <p>
+                Early concepts for the ball launcher included dual flywheels, single flywheels, and even catapults. 
+                We converged on a single flywheel design for predictability and easier tuning. Initially constructed 
+                with cardboard and off-the-shelf wheels, we later moved to laser-cut duron prototypes and a custom 
+                3D-printed flywheel. The final setup balanced simplicity, accuracy, and repeatability:
+            </p>
+            <ul>
+                <li><strong>Initial Cardboard & Tape Prototype:</strong> Verified feasibility with crude construction.</li>
+                <li><strong>Second Iteration (Dual Flywheel):</strong> More rigid duron frame, improved accuracy but suffered from 
+                    inconsistent spin rates and ball trajectory variations.</li>
+                <li><strong>Final Single Flywheel Setup:</strong> Stiffer frame, custom flywheel, and a guided chute. This 
+                    yielded better accuracy and a repeatable trajectory, good enough for our bouncing strategy into target buckets.</li>
+            </ul>
+            <p>
+                Future refinements might involve adding speed control feedback for the flywheel motor or more precise 
+                wheel-to-shaft alignment to further reduce variability.
+            </p>
+        </section>
+
+        <section id="electronics-power">
+            <h2>3. Electronics & Power Management</h2>
+            <p>
+                The robot’s electronic system integrated multiple components—motors, servos, ultrasonic sensors, 
+                a button input, and the Arduino microcontroller—with limited pin availability and strict power constraints.
+            </p>
+            <h3>Power Supply</h3>
+            <p>
+                Two supplied batteries were stepped down to a stable 7.2 V via separate LM2596 buck converters:
+            </p>
+            <ul>
+                <li>One buck converter dedicated to the Arduino to avoid “brown outs”</li>
+                <li>Another converter for the drive and shooter motors</li>
+            </ul>
+            <p>
+                Even though motors were rated for higher voltages, running at 7.2 V allowed lower speeds that enhanced 
+                orientation accuracy and minimized instability.
+            </p>
+
+            <h3>Arduino Connections & Pin Constraints</h3>
+            <p>
+                With multiple motors and sensors, pin availability became an issue. To reduce pin usage, a 74HC14 inverter 
+                was employed so each motor’s direction control could be managed with a single Arduino pin. Nearly all PWM-capable 
+                pins were used: each DC motor driver got a PWM line, and two servo motors (one for waving, one for ball feeding) 
+                also demanded PWM channels.
+            </p>
+            <p>
+                A push button on an analog pin (A1) toggled between targeting modes. Ultrasonic sensors, each needing a trigger 
+                and echo pin, completed the sensor array.
+            </p>
+        </section>
+
+        <section id="software-strategy">
+            <h2>4. Software Strategy & State Machine</h2>
+            <h3>State Machine Overview</h3>
+            <p>
+                The robot’s behavior was governed by a state machine to streamline transitions between loading, orienting, 
+                shooting, and returning states. Key states included:
+            </p>
+            <ul>
+                <li><strong>WAVE:</strong> Wave arm servo as a start signal.</li>
+                <li><strong>FORWARD, BACKWARD, TURNING:</strong> Basic locomotion states to position the robot.</li>
+                <li><strong>ORIENT:</strong> Use sensors and wall alignment to achieve precise orientation.</li>
+                <li><strong>SHOOTING:</strong> Fire balls by activating the shooter servo and flywheel.</li>
+                <li><strong>RELOAD:</strong> Cycle the loading mechanism for another round of shots.</li>
+                <li><strong>END:</strong> Conclude operations once time is up or objectives met.</li>
+            </ul>
+            <p>
+                By defining states clearly and assigning conditions for transitions, we maintained structured, traceable, 
+                and debuggable code. A single timer (using the Metro library) managed round timing.
+            </p>
+        </section>
+
+        <section id="orientation">
+            <h2>5. Orientation & Positioning</h2>
+            <p>
+                Achieving quick and precise orientation was critical. Our approach combined ultrasonic sensors with 
+                a physical alignment technique using a wall:
+            </p>
+            <h3>Ultrasonic-Based Orientation</h3>
+            <p>
+                Initially, the robot spun in place, sampling two perpendicular ultrasonic sensors. The key was to find 
+                the robot’s orientation where both sensors read minimum distances simultaneously. To improve sensor reliability:
+            </p>
+            <ul>
+                <li>Flatten sensor mounting for consistent reflections</li>
+                <li>Averaged multiple readings to smooth noise</li>
+                <li>Discarded initial readings and introduced delays for stable data</li>
+            </ul>
+            <p>
+                Once both sensors indicated a minimal distance, the robot was approximately oriented.
+            </p>
+            <h3>Wall-Alignment for Fine-Tuning</h3>
+            <p>
+                After ultrasonic-based alignment, the robot backed into a wall. By gently reversing into it and then 
+                turning each wheel independently, we achieved a near-perfect orientation reset. This was fast, reliable, 
+                and essential for repeating cycles with minimal drift over time.
+            </p>
+        </section>
+
+        <section id="bom">
+            <h2>6. Bill of Materials & Cost Analysis</h2>
+            <p>
+                The project stayed within a reasonable budget. Many components came from existing lab kits or storerooms, 
+                minimizing expenses. Major purchased components included DC motors, a 74HC14 inverter, L298N motor drivers, 
+                a few mechanical parts like wheels and motor mounts, and some ultrasonic sensors. An example partial BOM:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Cost Per Item ($)</th>
+                        <th>Quantity</th>
+                        <th>Total ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Greatisan A6207 12V DC Motor</td><td>15</td><td>2</td><td>30</td>
+                    </tr>
+                    <tr>
+                        <td>74HC14 Inverter</td><td>0.35</td><td>1</td><td>0.35</td>
+                    </tr>
+                    <tr>
+                        <td>L298N</td><td>2.5</td><td>2</td><td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Motor Mount</td><td>4.21</td><td>2</td><td>8.42</td>
+                    </tr>
+                    <tr>
+                        <td>Sparkfun Wheel</td><td>3</td><td>2</td><td>6</td>
+                    </tr>
+                    <tr>
+                        <td>HC-SR04 Ultrasonic Sensors</td><td>2</td><td>2</td><td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Misc Fasteners (Nuts, Bolts)</td><td>Varied</td><td>Multiple</td><td>~2</td>
+                    </tr>
+                    <tr>
+                        <td>Arduino</td><td>0*</td><td>1</td><td>0*</td>
+                    </tr>
+                    <tr>
+                        <td>Servo Motors</td><td>0*</td><td>2</td><td>0*</td>
+                    </tr>
+                    <tr>
+                        <td>Breadboards & Wiring</td><td>0*</td><td>Multiple</td><td>0*</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                *Indicates items sourced from lab kits or the PRL (Product Realization Lab) at no extra cost.  
+            </p>
+            <p>
+                Total expenses stayed well under a $200 budget cap, primarily because many essential parts (Arduino, 
+                servos, breadboards) were borrowed or lab-provided.
+            </p>
+        </section>
+
+        <section id="conclusion">
+            <h2>7. Conclusion</h2>
+            <p>
+                The autonomous targeting robot project successfully integrated mechanical, electrical, and software 
+                systems to solve a structured problem: firing projectiles into targets with minimal human intervention.
+            </p>
+            <p>
+                Key takeaways:
+            </p>
+            <ul>
+                <li>State machine control simplified the logic for complex, multi-step tasks.</li>
+                <li>Ultrasonic plus wall-alignment provided a strong orientation strategy, critical for repeatable shooting.</li>
+                <li>The single-flywheel shooter design balanced accuracy with simplicity, and further refinements could 
+                    improve consistency.</li>
+            </ul>
+            <p>
+                Overall, this experience highlighted the importance of quick iteration, clever pin usage on the Arduino, 
+                robust mechanical construction, and practical solutions to sensor challenges.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | Multifaceted Engineering Project</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
+
+</body>
+</html>
