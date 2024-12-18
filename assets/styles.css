@@ -3,7 +3,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9fc;
+    background-color: #eef7ee; /* light greenish background */
     color: #333;
     text-align: center;
 }
@@ -11,32 +11,38 @@ body {
 /* Header */
 header {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(45deg, #ff5e78, #ff9d76, #ffd081);
+    background: linear-gradient(45deg, #4CAF50, #81C784); /* green tones */
     color: #fff;
     padding: 30px 20px;
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
-    font-size: 2.4em;
+    font-size: 2.2em;
     margin: 0;
 }
 
 header p {
     font-size: 1.1em;
     line-height: 1.5;
+    margin-top: 10px;
 }
 
 /* Section for projects */
 #projects {
-    padding: 30px 20px;
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
 }
+
 #projects h2 {
     font-family: 'Montserrat', sans-serif;
-    color: #ff5e78;
+    color: #388E3C; /* darker green for headings */
     font-size: 1.8em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 ul {
@@ -46,34 +52,36 @@ ul {
 
 li {
     margin: 15px 0;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    line-height: 1.4;
 }
 
 a {
     text-decoration: none;
-    color: #ff5e78;
+    color: #2E7D32; /* medium green for links */
     font-weight: bold;
-    border-bottom: 2px solid #ff9d76;
-    padding: 6px 12px;
-    border-radius: 8px;
+    padding: 4px 6px;
+    border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
+    border-bottom: 2px solid #A5D6A7; /* lighter green underlines */
 }
 
 a:hover {
-    background-color: #ff9d76;
+    background-color: #A5D6A7; /* lighter green highlight */
     color: #fff;
 }
 
 /* Footer */
 footer {
     font-family: 'Roboto', sans-serif;
-    background: #ff5e78;
+    background: #4CAF50;
     color: #fff;
-    padding: 15px;
+    padding: 10px;
     font-size: 0.9em;
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-radius: 15px 15px 0 0;
+    border-radius: 10px 10px 0 0;
     box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
