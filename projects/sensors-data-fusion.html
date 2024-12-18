@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensors & Data Fusion (EE292S) - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <h1>Sensors & Data Fusion (EE292S)</h1>
+        <p>
+            This project documents my experience working with a range of sensors on a Raspberry Pi-based platform, 
+            exploring inertial measurement (IMU) data fusion, PRBS-coded touch sensing, and photoplethysmography (PPG) 
+            for heart rate detection. Through these labs, I gained practical insights into signal processing, calibration, 
+            advanced filtering (including Kalman filters), and the importance of careful hardware-software integration.
+        </p>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#introduction">Introduction & Objectives</a></li>
+            <li><a href="#imu">IMU-Based Inertial Sensing & Data Fusion (Lab 1)</a></li>
+            <li><a href="#touch">Touch Sensing with PRBS & Correlation (Lab 2)</a></li>
+            <li><a href="#ppg">Photoplethysmography (PPG) & Heart Rate Measurement (Lab 3)</a></li>
+            <li><a href="#key-learnings">Key Learnings & Takeaways</a></li>
+            <li><a href="#future-work">Future Work</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="introduction">
+            <h2>1. Introduction & Objectives</h2>
+            <p>
+                In EE292S, our assignments spanned multiple sensor modalities: inertial measurements, touch sensing, 
+                and PPG. Our hardware included a Raspberry Pi 4 with sensor hats—ranging from an IMU board for 
+                accelerometer/gyroscope/magnetometer data, to an AD/DA hat for high-fidelity analog measurements of 
+                mutual-capacitance touch arrays, to a simple optical PPG module for heart rate detection.
+            </p>
+            <p>
+                The overarching goal: learn how to extract meaningful signals from raw, noisy sensor data. This meant 
+                delving into filtering techniques, coding strategies, calibration, and alignment between hardware 
+                constraints and software algorithms.
+            </p>
+        </section>
+
+        <section id="imu">
+            <h2>2. IMU-Based Inertial Sensing & Data Fusion (Lab 1)</h2>
+            <p>
+                We started with IMU data—accelerometer and gyroscope readings—to estimate orientation (pitch/roll) and 
+                eventually track position via dead reckoning. The challenge: accelerometers suffer from noise and 
+                gravity-induced bias, while gyros drift over time. Using a Kalman filter to fuse these measurements 
+                gave us stable and more accurate orientation estimates.
+            </p>
+            <p>
+                After initial attempts with complementary filters, the Kalman filter approach provided the best balance 
+                of short-term responsiveness (from the gyro) and long-term stability (from the accelerometer). I 
+                contributed by working on the filter code, tuning process and measurement noise parameters, and 
+                experimenting with bias removal to minimize final orientation error.
+            </p>
+        </section>
+
+        <section id="touch">
+            <h2>3. Touch Sensing with PRBS & Correlation (Lab 2)</h2>
+            <p>
+                Next, we moved into touch sensing using a PRBS (Pseudo-Random Binary Sequence) coding approach. The 
+                idea: send coded signals on “drive” lines and correlate the received signals on “sense” lines to 
+                reconstruct the mutual capacitance at each intersection, revealing touch location.
+            </p>
+            <p>
+                We worked on configuring the ADC sampling rates, selecting optimal PRBS length, and implementing correlation 
+                algorithms. It was all about signal-to-noise improvements—longer PRBS sequences improved resolution but 
+                lowered frame rate, and we had to find a sweet spot. On the EE side, ensuring stable ADC reads, minimizing 
+                cable interference, and setting gains correctly were crucial steps before any coding logic made sense.
+            </p>
+        </section>
+
+        <section id="ppg">
+            <h2>4. Photoplethysmography (PPG) & Heart Rate Measurement (Lab 3)</h2>
+            <p>
+                Finally, we tackled PPG to measure heart rate by shining light into tissue and reading the reflected 
+                intensity changes as blood pulses through. Noise, ambient light, and motion artifacts complicated 
+                matters, so we turned to filtering and FFT-based spectral analysis to isolate the fundamental frequency 
+                corresponding to heart rate.
+            </p>
+            <p>
+                We tested different sampling rates, adjusting gain, and using spectral methods to find 
+                stable heart rate estimates. We also explored heart rate variability in the time domain, applying peak 
+                detection and statistical analysis to characterize HRV. This exercise reinforced the interplay between 
+                hardware choice (LED intensity, gain settings) and advanced signal processing to extract a clean biological 
+                metric.
+            </p>
+        </section>
+
+        <section id="key-learnings">
+            <h2>5. Key Learnings & Takeaways</h2>
+            <ul>
+                <li><strong>Integration Matters:</strong> Each lab forced a balance between hardware tuning (gain, wiring, sampling rates) 
+                    and software algorithms (Kalman filters, PRBS correlation, FFT-based analysis).</li>
+                <li><strong>Noise & Bias Handling:</strong> Whether removing gravity components from accelerometers, calibrating accelerometer bias, 
+                    or filtering out ambient light in PPG data, carefully accounting for biases and noise sources made the difference 
+                    between messy and meaningful results.</li>
+                <li><strong>Incremental Prototyping:</strong> In all labs, starting with simpler methods (like complementary filters for IMU) 
+                    then upgrading to more complex techniques (Kalman filters) was essential. Iteration and testing were key at every step.</li>
+                <li><strong>Practical Constraints:</strong> We learned that performance depends heavily on sample rates, PRBS lengths, ADC configurations, 
+                    and how well we could physically stabilize the sensor. It's not just about clever code—the real world imposes real constraints.</li>
+            </ul>
+        </section>
+
+        <section id="future-work">
+            <h2>6. Future Work</h2>
+            <p>
+                There’s plenty of room to refine these projects:
+            </p>
+            <ul>
+                <li>For the IMU, implementing 3D position tracking with multiple axes and using magnetometer data could improve dead reckoning.</li>
+                <li>In touch sensing, exploring adaptive PRBS lengths or automating calibration could yield higher frame rates with good resolution.</li>
+                <li>For PPG, implementing advanced motion artifact removal or even real-time HRV computations would push the sensor closer to professional-grade monitors.</li>
+            </ul>
+        </section>
+
+        <section id="conclusion">
+            <h2>7. Conclusion</h2>
+            <p>
+                EE292S offered a broad introduction to sensor data fusion and advanced signal processing. By working through 
+                inertial measurements, PRBS-based touch sensing, and PPG heart rate detection, I built a stronger 
+                understanding of how to tackle real-world sensor challenges—from handling noise and bias to integrating 
+                multiple signals for a clearer picture. The experience underscored that meaningful sensor-based solutions 
+                emerge only when good engineering practices span the entire chain—from physical setup to code implementation.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | EE292S Sensor Projects</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
+
+</body>
+</html>
