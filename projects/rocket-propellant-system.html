@@ -3,139 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propellant Dynamics & Hot Fire Test Stand</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <title>Propellant Dynamics & Hot Fire Test Stand - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 
-<header>
-    <h1>Propellant Dynamics & Hot Fire Test Stand</h1>
-    <h2>Stanford Student Space Initiative - Propulsion Subteam</h2>
-    <p><strong>Author:</strong> Angelina P. Krinos</p>
-</header>
+    <header class="project-header">
+        <h1>Propellant Dynamics & Hot Fire Test Stand</h1>
+        <p>
+            This document outlines my work on a MATLAB-based propellant simulation tool and the development of a 
+            robust hot fire test stand for the Stanford Student Space Initiative’s propulsion activities. From 
+            modeling fluid blowdown dynamics to welding steel tubing, this effort marries theoretical analysis 
+            with hands-on engineering.
+        </p>
+    </header>
 
-<section id="introduction">
-    <h2>I. Introduction</h2>
-    <p>
-        Developing and testing rocket propulsion systems isn’t just about firing an engine; it’s about understanding 
-        and predicting how propellants behave over time, and building the hardware that safely measures thrust. 
-        Throughout this project, I contributed on two fronts: 
-    </p>
-    <ul>
-        <li>**Simulation Work:** Assisting with a MATLAB-based propellant flow simulation tool, aiming to model 
-            blowdown behavior and fluid-structure interactions in a flexible, modular way.</li>
-        <li>**Test Stand Fabrication:** Helping design and build a new hot fire test stand that would provide stable, 
-            accurate thrust measurements and integrate seamlessly with our propulsion ground support equipment.</li>
-    </ul>
-    <p>
-        These efforts align with industry standards: before a launch, major aerospace companies rely on validated 
-        simulations and robust test stands to ensure engines perform as expected. At SSI, we followed a similar 
-        approach—just on a more modest scale.
-    </p>
-</section>
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#introduction">Introduction & Goals</a></li>
+            <li><a href="#simulation">MATLAB Simulation Improvements</a></li>
+            <li><a href="#test-stand">Hot Fire Test Stand Design & Fabrication</a></li>
+            <li><a href="#methods">Methodology & Integration</a></li>
+            <li><a href="#results">Results & Performance</a></li>
+            <li><a href="#learnings">Key Learnings & Takeaways</a></li>
+            <li><a href="#futurework">Future Work</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
 
-<section id="simulation">
-    <h2>II. MATLAB-Based Propellant Simulation</h2>
-    <p>
-        As part of the team’s push for more accurate predictions, I helped refine a MATLAB simulation tool (codenamed 
-        “FrogFlow”) that models self-pressurizing propellant systems and blowdown dynamics. Previously, the group used 
-        a tool called “PropSim,” but it had limitations: it was hard-coded, not very extensible, and didn’t handle more 
-        complex scenarios well.
-    </p>
-    <p>
-        The new simulation framework:
-    </p>
-    <ul>
-        <li><strong>Class-Based Architecture:</strong> Components (like tanks, gas plenums, orifices) are nodes and conduits, making it easy to swap parts in and out.</li>
-        <li><strong>Fluids & Equations:</strong> We considered ideal gas and Van der Waals gas models, along with incompressible liquids, to capture realistic thermodynamic states.</li>
-        <li><strong>Numerical Integration:</strong> Using MATLAB’s ODE solvers (like <code>ode15s</code>) to handle stiff equations and track changing tank pressures and temperatures over time.</li>
-    </ul>
-    <p>
-        My role involved reviewing code modules, testing small changes, and comparing outputs against known analytical benchmarks. 
-        Helping with debugging and parameter setup gave me a deeper understanding of what factors affect blowdown rates and how sensitive the simulation is to initial conditions.
-    </p>
-</section>
+    <main>
 
-<section id="test-stand">
-    <h2>III. Hot Fire Test Stand Analysis & Fabrication</h2>
-    <p>
-        On the hardware side, I assisted in updating our hot fire test stand. The previous stand had issues: too much vibration, 
-        not easily portable, and awkward geometry that made integrating load cells and routing cables a hassle. With an upcoming 
-        hot fire test, we needed a sturdier, more user-friendly solution.
-    </p>
-    <p>
-        <strong>Design Goals:</strong>
-    </p>
-    <ul>
-        <li>Accurate thrust measurement (alignment of load cells and engine)</li>
-        <li>Portability (reduced mass, quick-release pins for easy transport)</li>
-        <li>Minimized vibration (symmetrical load paths, welded rectangular tubing)</li>
-        <li>Structural integrity (gussets, careful welding procedures)</li>
-    </ul>
-    <p>
-        My contributions included breaking down the CAD model, understanding how each component fit together, and assisting with 
-        fabrication tasks like preparing steel tubes, positioning parts for welding, and cleaning the final welds. During test day, 
-        I helped set up the stand, ensure load cells were correctly placed, and verify that everything was aligned before the engine fired.
-    </p>
-</section>
+        <section id="introduction">
+            <h2>1. Introduction & Goals</h2>
+            <p>
+                Before testing a rocket engine, it’s essential to predict how the propellants will behave (pressure, 
+                flow rates, and stability) and to have a test stand capable of accurately measuring thrust. My 
+                objectives included refining an existing propellant simulation framework to provide better modeling 
+                of blowdown scenarios and assisting in building a test stand that captures stable thrust readings 
+                during hot fire events.
+            </p>
+        </section>
 
-<section id="methods">
-    <h2>IV. Methodology: Fabrication & Simulation Integration</h2>
-    <p>
-        On the hardware side, I learned MIG welding basics and good shop practices—cleaning metal surfaces, using the right 
-        welding parameters, and following a logical sequence: tack first, check alignment, then do final welds. On the simulation 
-        side, it was about careful parameter selection, ensuring that fluid properties and initial conditions were realistic, and 
-        running small test cases to confirm expected behavior.
-    </p>
-</section>
+        <section id="simulation">
+            <h2>2. MATLAB Simulation Improvements</h2>
+            <p>
+                The simulation tool, originally called PropSim, needed more flexibility and realism. I contributed 
+                to enhancing a new class-based MATLAB framework that models nodes (tanks, gas plenums) and conduits 
+                (orifices, valves) to simulate blowdown of self-pressurizing propellants. By refining parameters, 
+                testing code modules, and comparing results against benchmarks, we achieved smoother, more 
+                trustworthy predictions of how tank pressure and fluid states evolve over time.
+            </p>
+            <p>
+                These improvements pave the way for predicting engine feed conditions more accurately, ultimately 
+                informing design tweaks before physical testing.
+            </p>
+        </section>
 
-<section id="results">
-    <h2>V. Results</h2>
-    <p>
-        <strong>Simulation:</strong> The improved MATLAB tool gave smoother, more realistic blowdown profiles. We could simulate 
-        how tank pressure changed over time as propellant was consumed, validating the approach by comparing against known 
-        approximate solutions. While still a work in progress, it’s more flexible and easier to expand than before.
-    </p>
-    <p>
-        <strong>Test Stand:</strong> The new stand performed well during the hot fire test. It withstood thrust loads without 
-        excessive vibration, and the load cells provided stable readings. The design changes—like adding toggle clamps for 
-        preload—improved measurement accuracy, and the stand’s reduced weight made transport and setup much easier.
-    </p>
-</section>
+        <section id="test-stand">
+            <h2>3. Hot Fire Test Stand Design & Fabrication</h2>
+            <p>
+                The previous stand had issues: vibration, awkward dimensions, and portability challenges. We redesigned 
+                it to feature welded rectangular tubing, gussets for rigidity, and toggle clamps for preload. The goal: 
+                a stand that safely holds the engine, directs thrust into load cells for accurate measurement, and 
+                remains portable enough for on-campus test campaigns.
+            </p>
+            <p>
+                I helped design the CAD model,led the welding process (MIG welding), and participated in 
+                final assembly. On test day, the stand performed well, offering stable readings and smoother integration 
+                with instrumentation.
+            </p>
+        </section>
 
-<section id="key-learnings">
-    <h2>VI. Key Learnings & Takeaways</h2>
-    <ul>
-        <li><strong>Multidisciplinary Insight:</strong> Working on both simulation and hardware reinforced how theory informs design, 
-            and how test results validate simulation assumptions.</li>
-        <li><strong>Hands-On Skills:</strong> Welding, cutting, and fixturing metal gave me practical mechanical skills and an appreciation for craftsmanship.</li>
-        <li><strong>Better Data & Predictions:</strong> More accurate simulation means we can predict performance and identify issues before firing the engine. 
-            Better test stand design means we can trust the measurements we collect.</li>
-        <li><strong>Team Collaboration:</strong> Learned from experienced team members, combined their knowledge with my own, and contributed meaningfully to a successful outcome.</li>
-    </ul>
-</section>
+        <section id="methods">
+            <h2>4. Methodology & Integration</h2>
+            <p>
+                On the simulation side, I reviewed code structure, tested small changes, and ensured that each component’s 
+                equations made sense physically. On the fabrication side, I learned MIG welding basics, carefully followed 
+                a tack-then-weld approach, and maintained strict safety protocols.
+            </p>
+            <p>
+                Integrating both efforts means our simulations can inform test parameters (like initial tank pressure), 
+                and the test stand’s data can validate or refine the simulation model. It’s a virtuous cycle of theory 
+                guiding practice and practice feeding back into theory.
+            </p>
+        </section>
 
-<section id="future-work">
-    <h2>VII. Future Work</h2>
-    <p>
-        On the simulation side, we want to implement more complex fluid models and validate them against experimental data. Eventually, 
-        we could integrate combustion models or interface with C++ backends for speed.
-    </p>
-    <p>
-        For the test stand, painting and adding a rotational pivot might be next steps. We could also incorporate more instrumentation 
-        (temperature, vibration sensors) to gain richer insights during test campaigns.
-    </p>
-</section>
+        <section id="results">
+            <h2>5. Results & Performance</h2>
+            <p>
+                The updated simulation tool produced more stable blowdown curves, revealing subtle effects of orifice 
+                sizing and fluid properties. The new test stand withstood a hot fire test, delivering cleaner thrust data 
+                with reduced vibration artifacts.
+            </p>
+            <p>
+                These results mean we’re better positioned to make data-driven improvements. Instead of guesswork, we 
+                have reliable numbers—both from predictive modeling and from actual engine firings.
+            </p>
+        </section>
 
-<section id="conclusion">
-    <h2>VIII. Conclusion</h2>
-    <p>
-        By working on both propellant simulation software and the hot fire test stand, I got to see the full cycle: from modeling fluid 
-        dynamics in MATLAB to physically welding steel and setting up a real engine test. It’s one thing to run a simulation, and another 
-        to see metal, bolts, and flame in real life. This integrated approach taught me the value of balancing theoretical predictions 
-        with practical engineering reality.
-    </p>
-</section>
+        <section id="learnings">
+            <h2>6. Key Learnings & Takeaways</h2>
+            <ul>
+                <li><strong>Interdisciplinary Insight:</strong> Understanding propellant behavior improves test stand design, and vice versa.</li>
+                <li><strong>Hands-On Skills:</strong> Welding, cutting, fixturing metal, and adhering to shop best practices were invaluable experiences.</li>
+                <li><strong>Code & Engineering:</strong> Debugging simulations taught me to appreciate good code structure and the value of physical validation.</li>
+                <li><strong>Collaboration:</strong> Working alongside experienced team members enhanced my learning curve and boosted overall project quality.</li>
+            </ul>
+        </section>
+
+        <section id="futurework">
+            <h2>7. Future Work</h2>
+            <p>
+                Next steps include integrating more complex fluid models into the simulation and possibly adding 
+                combustion modeling. For the test stand, we might incorporate more sensors (temperature, vibration 
+                monitors) and consider painting or adding a rotational pivot.
+            </p>
+        </section>
+
+        <section id="conclusion">
+            <h2>8. Conclusion</h2>
+            <p>
+                By contributing to both the MATLAB simulation improvements and the hot fire test stand fabrication, 
+                I gained a fuller picture of how theory meets real-world constraints. This project reinforced the 
+                importance of holistic engineering approaches—where modeling, building, and testing inform each other, 
+                ultimately leading to more reliable rocket propulsion development.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | Propulsion Project Report</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
 
 </body>
 </html>
