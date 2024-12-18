@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optical Cloaking - EE134 Final Project</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Optical Cloaking</h1>
+    <h2>EE134 Final Project, March 2024</h2>
+    <p><strong>Team:</strong> Adri Kornfein, Evelyn Nutt, Vassilis Alexopoulos, Angelina Krinos</p>
+</header>
+
+<section id="introduction">
+    <h2>Introduction & Motivation</h2>
+    <p>
+        When we first heard about optical cloaking—making objects “disappear” by manipulating how light passes around them—it 
+        sounded more like science fiction than a feasible lab project. But the Rochester Cloak concept, pioneered by University 
+        of Rochester researchers, provided a surprisingly straightforward path using off-the-shelf lenses and careful geometric 
+        alignment. Our goal: replicate a broadband optical cloaking setup on a lab bench and learn about Fourier optics, spatial 
+        filtering, and the painstaking alignment required to fool the human eye.
+    </p>
+    <p>
+        While the system won’t hide a tank from an enemy line-of-sight, it can produce a striking effect: an object placed behind 
+        our lens arrangement becomes partially invisible to a viewer slightly off-axis. Beyond the obvious “cool” factor, this 
+        project reinforces fundamental optical engineering skills—understanding ray optics, designing multi-lens imaging systems, 
+        and contending with real-world imperfections.
+    </p>
+</section>
+
+<section id="objectives">
+    <h2>Key Learning Objectives</h2>
+    <ul>
+        <li>Apply paraxial ray optics to design a multi-lens cloaking system.</li>
+        <li>Experience hands-on challenges in alignment, focusing, and spatial filtering.</li>
+        <li>Examine how object size, position, and background influence perceived invisibility.</li>
+        <li>Bridge theory and experiment, evaluating why a donut-shaped cloaking region arises.</li>
+        <li>Discuss engineering trade-offs and scalability (e.g., lens diameter, focal lengths, metamaterials) for more robust cloaking effects.</li>
+    </ul>
+</section>
+
+<section id="theory">
+    <h2>Theoretical Background</h2>
+    <p>
+        The cloaking setup can be analyzed as two cascaded Keplerian beam expanders. Each pair of lenses attempts to reproduce 
+        free-space propagation over a certain path, effectively “mapping” the region behind the second lens onto the space in 
+        front without showing the object in between.
+    </p>
+    <p>
+        The system parameters:
+    </p>
+    <ul>
+        <li><strong>Focal lengths chosen:</strong> f<sub>1</sub> = 200 mm, f<sub>2</sub> = 75 mm.</li>
+        <li><strong>Distance arrangement:</strong> d<sub>1</sub> = d<sub>3</sub> = f<sub>1</sub> + f<sub>2</sub> = 275 mm.</li>
+        <li><strong>Magnifications:</strong> M<sub>1</sub> &lt; 1 and M<sub>2</sub> > 1, arranged so M<sub>1</sub>·M<sub>2</sub> = 1. This ensures the total system’s effective magnification returns 
+            the image size to that of the original object, but with certain rays bypassing the region where the object would appear.</li>
+    </ul>
+    <p>
+        In theory, if perfectly aligned and if the lenses were infinitely large, the object placed at the cloaking plane would 
+        vanish for a range of viewing angles. In practice, finite lens diameters, imperfect focal length matches, and mechanical 
+        tolerances lead to partial invisibility and edge ghosting.
+    </p>
+</section>
+
+<section id="setup">
+    <h2>Experimental Setup & Fine-Tuning</h2>
+    <p>
+        The hardware consisted of four lenses arranged along an optical rail with adjustable lens mounts. We started by placing 
+        the lenses according to the theoretical distances:
+    </p>
+    <ul>
+        <li>D<sub>1</sub> ≈ 275 mm, D<sub>2</sub> ≈ 325 mm, D<sub>3</sub> ≈ 270 mm (slightly off from theory but close enough).</li>
+    </ul>
+    <p>
+        Achieving the cloaking effect required meticulous height and tilt adjustments. Each lens was set on posts with fine-thread 
+        screws to shift them in the vertical (y) direction by fractions of a millimeter. Any misalignment introduced distortions, 
+        reduced the cloaking zone, or caused the object to partially show up as faint edges.
+    </p>
+    <p>
+        The background behind the final lens stack mattered. A uniform background helped the cloaking effect. High-contrast backgrounds 
+        revealed subtle shadows or refractive differences. Illumination also played a role—soft, even lighting minimized glare and 
+        helped the object fade from view.
+    </p>
+</section>
+
+<section id="observations">
+    <h2>Observations & Challenges</h2>
+    <p>
+        After fine-tuning, we found a donut-shaped cloaking region: an annulus where small objects disappeared best. Objects placed 
+        too far off-axis or too large in diameter would not fully cloak. Thin vertical rods (≈5 mm diameter) vanished more convincingly 
+        than broader objects like a 30 mm fidget ball.
+    </p>
+    <p>
+        The cloaking effect varied strongly with the viewer’s angle. Within a narrow angular window (a few degrees off-axis), the object 
+        behind our lens assembly seemed to vanish. Shifting slightly left or right made portions of the object reappear at the edges. 
+        This sensitivity matched theoretical predictions that perfect cloaking is highly angle-dependent unless more sophisticated 
+        optics or metamaterials are employed.
+    </p>
+    <p>
+        Another subtlety: the system’s finite lens apertures introduced vignetting and ghostly outlines of the object’s edges, especially 
+        for larger or off-center objects. The difference between theory and experiment taught us that real optical systems are limited 
+        by component tolerances, alignment difficulty, and the complexity of ensuring a pristine wavefront reproduction.
+    </p>
+</section>
+
+<section id="measurements">
+    <h2>Measurements & Alignment Results</h2>
+    <p>
+        Our measured lens separations ended up slightly off from the ideal: D<sub>2</sub> was about 325 mm rather than the predicted 330 mm. 
+        These minor deviations altered the exact cloaking zone. Still, the observed donut-shaped region and partial invisibility confirmed 
+        we were operating close to the intended design.
+    </p>
+    <p>
+        By systematically testing objects of different diameters and placing them at various depths near the second lens plane, we 
+        identified the most robust cloaking occurred for small (5–10 mm) objects placed roughly 8–10 cm behind the second lens. Larger 
+        objects never fully vanished, but their central portions at least became dimmer, indicating partial cloaking.
+    </p>
+</section>
+
+<section id="discussion">
+    <h2>Discussion & Potential Improvements</h2>
+    <p>
+        Engineering a better cloak could involve larger-diameter lenses to reduce edge effects, more precisely matched focal lengths, 
+        or even active wavefront shaping using adaptive optics. Metamaterial-based designs, though beyond our lab scope, could enable 
+        broader angular cloaking or less stringent alignment. Additionally, developing a quantitative method to map out the cloaking 
+        region—perhaps by scanning a small test probe and recording intensity—would give more rigorous data.
+    </p>
+    <p>
+        Scaling the system: A bigger setup might cloak larger objects but require correspondingly larger lenses and more careful 
+        alignment. Miniaturization is also possible; shorter focal lengths and tighter spacing could make a compact cloak, but at 
+        the cost of more sensitivity to manufacturing tolerances.
+    </p>
+</section>
+
+<section id="conclusion">
+    <h2>Conclusions & Reflection</h2>
+    <p>
+        We successfully created a rudimentary optical cloak. The effect was fragile and limited, but unmistakable for small objects 
+        and precise viewing angles. The donut-shaped cloaking region and the angle dependence matched theoretical expectations. 
+        Gaining these insights required interdisciplinary thinking—combining geometric optics design, meticulous mechanical alignment, 
+        and hands-on troubleshooting.
+    </p>
+    <p>
+        This project taught us more than just how to make something “disappear.” We learned what it means to push optical systems to 
+        their limits, how sensitive they are to tiny deviations, and how implementing even a “simple” concept in real optics demands 
+        patience and creativity. It was a fitting culmination of our optics coursework, blending theory, practice, and a hint of magic.
+    </p>
+</section>
+
+<section id="credits">
+    <h2>Credits</h2>
+    <p><strong>Contributions:</strong></p>
+    <ul>
+        <li>Adri: Intro, Theory, Observations, Numerical Measurements.</li>
+        <li>Angelina: Inspiration, Key Learning Objectives, Experimental Setup, Fine Adjustments.</li>
+        <li>Evelyn: Detailed Observations, Results, Conclusions, Photography.</li>
+        <li>Vassilis: Intro, Setup Verification, Troubleshooting, Angle Dependence Testing.</li>
+    </ul>
+
+    <p><strong>Sources:</strong></p>
+    <ul>
+        <li>Choi and Howell, "Paraxial Ray Optics Cloaking"</li>
+        <li>University of Rochester Newscenter (Rochester Cloak)</li>
+    </ul>
+</section>
+
+<footer>
+    <p>EE134 Final Project, March 2024</p>
+    <p>Thank you for reading!</p>
+</footer>
+
+</body>
+</html>
