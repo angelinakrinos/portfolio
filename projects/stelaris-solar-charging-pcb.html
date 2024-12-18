@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stelaris Solar Charging PCB - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <h1>Stelaris Solar-Powered PCB: Renewable Energy, Simplified</h1>
+        <p>
+            <strong>Course:</strong> EE 156: Board Level Design<br>
+            <strong>Date:</strong> November 5, 2024<br>
+            Stelaris is a solar charging PCB concept designed to power phones and peripherals using sunlight. 
+            This project integrated an ESP32-S3 microcontroller, INA219 sensors, ST7735 LCD, and SD card storage 
+            into a compact board. The journey involved careful component selection, layout optimization, and 
+            firmware development—ultimately yielding a deeper understanding of hardware design and solar energy systems.
+        </p>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#solar-design">Designing with Solar Panels</a></li>
+            <li><a href="#schematic">Schematic & BOM</a></li>
+            <li><a href="#pcb-layout">PCB Layout</a></li>
+            <li><a href="#assembly">Assembly Process</a></li>
+            <li><a href="#firmware">Firmware Development</a></li>
+            <li><a href="#programming">Programming the PCB</a></li>
+            <li><a href="#evolution">Design Evolution & Challenges</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>1. Overview</h2>
+            <p>
+                Stelaris was conceived as a solar-charging solution for personal electronics. The goal: a 
+                self-contained PCB that harnesses solar energy, regulates voltage, and provides 
+                real-time performance monitoring. The system incorporates:
+            </p>
+            <ul>
+                <li><strong>ESP32-S3 Microcontroller:</strong> High-performance, low-power MCU.</li>
+                <li><strong>INA219 Sensors:</strong> For precise current and voltage measurements.</li>
+                <li><strong>ST7735 LCD:</strong> A compact color display to provide user-friendly status updates.</li>
+                <li><strong>SD Card Module:</strong> Onboard data logging for long-term performance analysis.</li>
+            </ul>
+        </section>
+
+        <!-- Designing with Solar Panels -->
+        <section id="solar-design">
+            <h2>2. Designing with Solar Panels</h2>
+            <h3>2.1 Solar Panel Selection</h3>
+            <p>
+                Selecting a suitable solar panel required balancing power output, efficiency, and form factor. 
+                Ultimately, 12V panels were chosen to ensure reliable power delivery even under less-than-ideal lighting conditions. 
+                This provided ample headroom for regulation and guaranteed sufficient current for charging tasks.
+            </p>
+            <h3>2.2 Voltage Regulation</h3>
+            <p>
+                Protecting the battery and ensuring stable operation meant careful voltage regulation. The 
+                <code>RTQ2520GQW LDO</code> regulator was employed to efficiently step down voltage, providing clean, 
+                stable power to sensitive components and maintaining overall system reliability.
+            </p>
+        </section>
+
+        <!-- Schematic & BOM -->
+        <section id="schematic">
+            <h2>3. Schematic Design</h2>
+            <p>
+                The schematic laid out the blueprint for component interconnections. The ESP32-S3 served as 
+                the system’s brain, interfacing with INA219 sensors over I2C and the ST7735 display over SPI. 
+                Voltage dividers and LDO regulators ensured stable power, while an SD card module enabled persistent data logging.
+            </p>
+
+            <!-- Placeholder for schematic image -->
+            <div class="image-container">
+                <img src="images/stelaris-schematic.png" alt="Stelaris Schematic Diagram">
+                <p class="img-caption">Figure 1: Stelaris Schematic Diagram (Replace with your actual schematic)</p>
+            </div>
+
+            <h2>4. Bill of Materials (BOM)</h2>
+            <p>
+                Components were chosen for performance, efficiency, and cost-effectiveness. Key parts included:
+            </p>
+            <ul>
+                <li><strong>ESP32-S3:</strong> Dual-core MCU with low-power capabilities and multiple interfaces.</li>
+                <li><strong>INA219:</strong> Accurate current/voltage sensing over I2C.</li>
+                <li><strong>ST7735 LCD:</strong> Compact, full-color display, SPI interface.</li>
+                <li><strong>RTQ2520GQW LDO:</strong> Provides stable, regulated voltage with low dropout.</li>
+                <li><strong>SD Card Module:</strong> For on-board data logging and storage flexibility.</li>
+            </ul>
+
+            <!-- Placeholder to link a PDF of your BOM -->
+            <p><a href="docs/stelaris-bom.pdf" target="_blank">View Full BOM (PDF)</a></p>
+        </section>
+
+        <!-- PCB Layout -->
+        <section id="pcb-layout">
+            <h2>5. PCB Layout</h2>
+            <p>
+                The PCB underwent multiple design iterations, focusing on improving signal integrity, ensuring 
+                stable SD card operation, and optimizing voltage dividers. Component placement and trace routing 
+                were refined to reduce noise and ensure efficient power delivery.
+            </p>
+
+            <!-- Placeholder for PCB layout images -->
+            <div class="image-gallery">
+                <div>
+                    <img src="images/stelaris-pcb-front.png" alt="Front Side of Stelaris PCB">
+                    <p class="img-caption">Figure 2: Front Side of Stelaris PCB</p>
+                </div>
+                <div>
+                    <img src="images/stelaris-pcb-back.png" alt="Back Side of Stelaris PCB">
+                    <p class="img-caption">Figure 3: Back Side of Stelaris PCB</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assembly Process -->
+        <section id="assembly">
+            <h2>6. Assembly Process</h2>
+            <p>
+                Assembling Stelaris involved a combination of hand soldering for early prototypes and reflow 
+                techniques for more consistent results. A pick-and-place machine was evaluated but ultimately 
+                not chosen for this particular design due to complexity and cost considerations.
+            </p>
+            <ul>
+                <li><strong>Hand Soldering:</strong> Ideal for initial prototypes and small batches.</li>
+                <li><strong>Reflow Oven:</strong> Provided uniform solder joints and improved consistency.</li>
+            </ul>
+        </section>
+
+        <!-- Firmware Development -->
+        <section id="firmware">
+            <h2>7. Firmware Development</h2>
+            <p>
+                The firmware coordinated sensor readings, display updates, and data logging. Key aspects included:
+            </p>
+            <ul>
+                <li><strong>Sensor Management:</strong> INA219 sensors read current and voltage data over I2C.</li>
+                <li><strong>Display Updates:</strong> SPI communication to the ST7735 LCD ensured responsive, real-time data visualization.</li>
+                <li><strong>Data Logging:</strong> SD card integration allowed for persistent storage of system performance metrics.</li>
+            </ul>
+
+            <!-- Example firmware code snippet -->
+            <pre><code class="language-rust">
+// Example INA219 Initialization in Rust
+let config = I2cConfig::new().baudrate(400.kHz().into());
+let i2c = I2cDriver::new(peripherals.i2c1, peripherals.pins.gpio8, peripherals.pins.gpio9, &config)?;
+let mut sensor1 = INA219::new(i2c, 0x40);
+
+// LCD Setup
+let mut display = ST7735::new(spi, dc_pin, rst_pin, false, false, 130, 131);
+display.init(&mut delay)?;
+display.set_orientation(&Orientation::PortraitSwapped)?;
+</code></pre>
+        </section>
+
+        <!-- Programming the PCB -->
+        <section id="programming">
+            <h2>8. Programming the PCB</h2>
+            <p>
+                Programming Stelaris was done using the Rust toolchain and ESP-IDF environment. Commands were 
+                straightforward, and debugging utilized cargo-espflash for a seamless experience.
+            </p>
+            <pre><code>
+// Flashing the firmware
+cargo espflash --release /dev/ttyUSB0
+
+// Debugging
+cargo espflash monitor
+</code></pre>
+        </section>
+
+        <!-- Design Evolution & Challenges -->
+        <section id="evolution">
+            <h2>9. Design Evolution</h2>
+            <h3>9.1 Challenges and Solutions</h3>
+            <p>
+                Early challenges included SD card signal integrity issues and voltage measurement calibration. 
+                Iterative redesign of the SD card interface and careful calibration of the voltage divider circuits 
+                enhanced reliability. Each iteration brought new insights, improving both performance and robustness.
+            </p>
+
+            <h3>9.2 Learning Outcomes</h3>
+            <p>
+                Throughout the design process, several valuable lessons were learned:
+            </p>
+            <ul>
+                <li><strong>Floorplanning & Layout:</strong> Strategic component placement reduces interference and simplifies debugging.</li>
+                <li><strong>Data Logging Reliability:</strong> Properly routing and buffering SPI lines improved SD card logging stability.</li>
+                <li><strong>Accurate Voltage Monitoring:</strong> Calibrating INA219 sensors and voltage dividers ensured trustworthy performance data.</li>
+                <li><strong>LCD Interface Stability:</strong> SPI configuration fine-tuning ensured smooth display updates.</li>
+                <li><strong>Manufacturability:</strong> Incorporating test points and standard footprints streamlined assembly and testing.</li>
+                <li><strong>Iterative Improvement:</strong> Embracing design iterations fostered a culture of continuous refinement.</li>
+                <li><strong>Power Efficiency:</strong> Managing thermal constraints and power consumption optimized performance for solar input.</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion">
+            <h2>10. Conclusion</h2>
+            <p>
+                Stelaris transformed from a conceptual PCB charger into a working prototype that harnessed 
+                solar energy in a meaningful way. The process offered deep insights into PCB design, firmware 
+      
