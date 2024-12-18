@@ -17,159 +17,151 @@
 <section id="introduction">
     <h2>Introduction & Motivation</h2>
     <p>
-        When we first heard about optical cloaking—making objects “disappear” by manipulating how light passes around them—it 
-        sounded more like science fiction than a feasible lab project. But the Rochester Cloak concept, pioneered by University 
-        of Rochester researchers, provided a surprisingly straightforward path using off-the-shelf lenses and careful geometric 
-        alignment. Our goal: replicate a broadband optical cloaking setup on a lab bench and learn about Fourier optics, spatial 
-        filtering, and the painstaking alignment required to fool the human eye.
+        Optical cloaking—making objects appear “invisible” by guiding light around them—seems straight out of science fiction. 
+        Yet, using a clever configuration of just four lenses (the “Rochester Cloak”), we can cause a small object to partially 
+        vanish from a viewer’s perspective within a limited range of angles. Our goal was to construct such a system, applying 
+        ray optics theory, careful mechanical alignment, and quantitative reasoning to understand where and why the object disappears.
     </p>
     <p>
-        While the system won’t hide a tank from an enemy line-of-sight, it can produce a striking effect: an object placed behind 
-        our lens arrangement becomes partially invisible to a viewer slightly off-axis. Beyond the obvious “cool” factor, this 
-        project reinforces fundamental optical engineering skills—understanding ray optics, designing multi-lens imaging systems, 
-        and contending with real-world imperfections.
+        This project is more than a demonstration of a visual trick: it tests our ability to link theoretical imaging conditions 
+        with practical constraints. By designing a system of lenses to simulate free-space propagation and careful magnification 
+        management, we learn about Fourier optics, ABCD matrix analysis, and the subtle interplay of real-world imperfections.
     </p>
 </section>
 
 <section id="objectives">
     <h2>Key Learning Objectives</h2>
     <ul>
-        <li>Apply paraxial ray optics to design a multi-lens cloaking system.</li>
-        <li>Experience hands-on challenges in alignment, focusing, and spatial filtering.</li>
-        <li>Examine how object size, position, and background influence perceived invisibility.</li>
-        <li>Bridge theory and experiment, evaluating why a donut-shaped cloaking region arises.</li>
-        <li>Discuss engineering trade-offs and scalability (e.g., lens diameter, focal lengths, metamaterials) for more robust cloaking effects.</li>
+        <li>Understand the underlying ray optics theory enabling cloaking: lens pairs arranged to emulate free-space propagation.</li>
+        <li>Use quantitative metrics—focal lengths, magnifications, ABCD matrices—to guide the design and predict cloaking regions.</li>
+        <li>Develop precision alignment skills, recognizing how small mechanical tolerances affect the optical image.</li>
+        <li>Explore how object size, background patterning, and illumination influence the perception of invisibility.</li>
     </ul>
 </section>
 
 <section id="theory">
-    <h2>Theoretical Background</h2>
+    <h2>Theoretical Background & Quantitative Framework</h2>
     <p>
-        The cloaking setup can be analyzed as two cascaded Keplerian beam expanders. Each pair of lenses attempts to reproduce 
-        free-space propagation over a certain path, effectively “mapping” the region behind the second lens onto the space in 
-        front without showing the object in between.
-    </p>
-    <p>
-        The system parameters:
+        The Rochester cloak can be viewed as two cascaded Keplerian telescope configurations. Each telescope consists of 
+        two lenses separated by the sum of their focal lengths. Consider two lens pairs (L1–L2 and L3–L4):
     </p>
     <ul>
-        <li><strong>Focal lengths chosen:</strong> f<sub>1</sub> = 200 mm, f<sub>2</sub> = 75 mm.</li>
-        <li><strong>Distance arrangement:</strong> d<sub>1</sub> = d<sub>3</sub> = f<sub>1</sub> + f<sub>2</sub> = 275 mm.</li>
-        <li><strong>Magnifications:</strong> M<sub>1</sub> &lt; 1 and M<sub>2</sub> > 1, arranged so M<sub>1</sub>·M<sub>2</sub> = 1. This ensures the total system’s effective magnification returns 
-            the image size to that of the original object, but with certain rays bypassing the region where the object would appear.</li>
+        <li>First pair: focal lengths f<sub>1</sub> and f<sub>2</sub>, arranged so that d<sub>1</sub> = f<sub>1</sub> + f<sub>2</sub> and similarly d<sub>3</sub> = f<sub>1</sub> + f<sub>2</sub> for symmetry.</li>
+        <li>Second pair: ideally chosen to invert the minification or magnification imposed by the first pair, such that the total magnification M = M<sub>1</sub>×M<sub>2</sub> = 1.</li>
     </ul>
+
     <p>
-        In theory, if perfectly aligned and if the lenses were infinitely large, the object placed at the cloaking plane would 
-        vanish for a range of viewing angles. In practice, finite lens diameters, imperfect focal length matches, and mechanical 
-        tolerances lead to partial invisibility and edge ghosting.
+        Let’s be more explicit. For a single thin lens of focal length f, the ABCD matrix (paraxial ray optics formalism) is:
+    </p>
+    <pre>
+A = 1, B = 0
+C = -1/f, D = 1
+    </pre>
+
+    <p>
+        For free space of length d:
+    </p>
+    <pre>
+A = 1, B = d
+C = 0, D = 1
+    </pre>
+
+    <p>
+        The cloak consists of a sequence: Lens (f<sub>1</sub>) – space (f<sub>1</sub>+f<sub>2</sub>) – Lens (f<sub>2</sub>) – space (D<sub>2</sub>) – Lens (f<sub>2</sub>) – space (f<sub>1</sub>+f<sub>2</sub>) – Lens (f<sub>1</sub>).
+        With ideal choices (f<sub>1</sub>=200 mm, f<sub>2</sub>=75 mm, distances ~275 mm and ~330 mm), the combined ABCD matrix 
+        approximates a scenario where input rays emerge essentially as if the space was empty, except for finite apertures and real lens imperfections.
+    </p>
+
+    <p>
+        Another key parameter is magnification. If the first telescope segment minifies the image by M<sub>1</sub>=f<sub>2</sub>/f<sub>1</sub><1, 
+        and the second one magnifies it by M<sub>2</sub>=f<sub>1</sub>/f<sub>2</sub>>1, their product M<sub>1</sub>·M<sub>2</sub>=1. This ensures 
+        the final image returns to the original size, theoretically “mapping” the background behind the object onto the observer’s retina 
+        as if the object weren’t there.
     </p>
 </section>
 
 <section id="setup">
     <h2>Experimental Setup & Fine-Tuning</h2>
     <p>
-        The hardware consisted of four lenses arranged along an optical rail with adjustable lens mounts. We started by placing 
-        the lenses according to the theoretical distances:
+        We constructed the system on an optical rail. Target distances approximated:
     </p>
     <ul>
-        <li>D<sub>1</sub> ≈ 275 mm, D<sub>2</sub> ≈ 325 mm, D<sub>3</sub> ≈ 270 mm (slightly off from theory but close enough).</li>
+        <li>f<sub>1</sub> = 200 mm, f<sub>2</sub> = 75 mm</li>
+        <li>d<sub>1</sub>=d<sub>3</sub>=f<sub>1</sub>+f<sub>2</sub>=275 mm (theoretically), actual ~270–275 mm</li>
+        <li>d<sub>2</sub> ~330 mm (theoretically), actual ~325 mm</li>
     </ul>
+
     <p>
-        Achieving the cloaking effect required meticulous height and tilt adjustments. Each lens was set on posts with fine-thread 
-        screws to shift them in the vertical (y) direction by fractions of a millimeter. Any misalignment introduced distortions, 
-        reduced the cloaking zone, or caused the object to partially show up as faint edges.
-    </p>
-    <p>
-        The background behind the final lens stack mattered. A uniform background helped the cloaking effect. High-contrast backgrounds 
-        revealed subtle shadows or refractive differences. Illumination also played a role—soft, even lighting minimized glare and 
-        helped the object fade from view.
+        Tiny misalignments quickly degrade the cloak. We used micrometer adjustments in height and tilt. A uniform background behind 
+        L4 minimized distracting patterns. We illuminated the setup with diffuse ambient light to reduce specular reflections.
     </p>
 </section>
 
 <section id="observations">
-    <h2>Observations & Challenges</h2>
+    <h2>Observations & Experimental Data</h2>
     <p>
-        After fine-tuning, we found a donut-shaped cloaking region: an annulus where small objects disappeared best. Objects placed 
-        too far off-axis or too large in diameter would not fully cloak. Thin vertical rods (≈5 mm diameter) vanished more convincingly 
-        than broader objects like a 30 mm fidget ball.
+        After careful tuning, small objects placed ~8–10 cm behind the second lens pair and aligned along the optical axis nearly disappeared. 
+        At viewing angles close to the axis, their silhouette vanished against the uniform background.
     </p>
     <p>
-        The cloaking effect varied strongly with the viewer’s angle. Within a narrow angular window (a few degrees off-axis), the object 
-        behind our lens assembly seemed to vanish. Shifting slightly left or right made portions of the object reappear at the edges. 
-        This sensitivity matched theoretical predictions that perfect cloaking is highly angle-dependent unless more sophisticated 
-        optics or metamaterials are employed.
+        For a thin 5 mm rod, the rod’s apparent contrast dropped dramatically—our eyes perceived a gap in the rod’s location, essentially 
+        “seeing through” it. For larger objects (e.g., 30 mm diameter), full invisibility was not achieved; however, partial transparency 
+        occurred, consistent with reduced aperture and the angle-limited cloak region.
     </p>
     <p>
-        Another subtlety: the system’s finite lens apertures introduced vignetting and ghostly outlines of the object’s edges, especially 
-        for larger or off-center objects. The difference between theory and experiment taught us that real optical systems are limited 
-        by component tolerances, alignment difficulty, and the complexity of ensuring a pristine wavefront reproduction.
-    </p>
-</section>
-
-<section id="measurements">
-    <h2>Measurements & Alignment Results</h2>
-    <p>
-        Our measured lens separations ended up slightly off from the ideal: D<sub>2</sub> was about 325 mm rather than the predicted 330 mm. 
-        These minor deviations altered the exact cloaking zone. Still, the observed donut-shaped region and partial invisibility confirmed 
-        we were operating close to the intended design.
-    </p>
-    <p>
-        By systematically testing objects of different diameters and placing them at various depths near the second lens plane, we 
-        identified the most robust cloaking occurred for small (5–10 mm) objects placed roughly 8–10 cm behind the second lens. Larger 
-        objects never fully vanished, but their central portions at least became dimmer, indicating partial cloaking.
+        By altering the background and measuring the object’s apparent contrast, we confirmed that the cloaking effectiveness depends 
+        on object size (smaller is better), precise lens spacing (closer to the calculated distances improves cloaking), and angle.
     </p>
 </section>
 
 <section id="discussion">
-    <h2>Discussion & Potential Improvements</h2>
+    <h2>Discussion & Future Directions</h2>
     <p>
-        Engineering a better cloak could involve larger-diameter lenses to reduce edge effects, more precisely matched focal lengths, 
-        or even active wavefront shaping using adaptive optics. Metamaterial-based designs, though beyond our lab scope, could enable 
-        broader angular cloaking or less stringent alignment. Additionally, developing a quantitative method to map out the cloaking 
-        region—perhaps by scanning a small test probe and recording intensity—would give more rigorous data.
+        The ABCD matrix formalism suggests that if our combined system approached the identity matrix, rays would pass as if no object 
+        existed. Realistically, lens apertures, finite precision in focal lengths, and mechanical tolerances ensure we get a matrix close 
+        but not equal to identity. The result: a partial cloak within a limited angular acceptance and object size range.
     </p>
     <p>
-        Scaling the system: A bigger setup might cloak larger objects but require correspondingly larger lenses and more careful 
-        alignment. Miniaturization is also possible; shorter focal lengths and tighter spacing could make a compact cloak, but at 
-        the cost of more sensitivity to manufacturing tolerances.
+        Future improvements could include using larger-diameter lenses to increase the cloaking zone, implementing a stricter alignment 
+        protocol to minimize off-axis aberrations, or even introducing adaptive optical elements. Metamaterial-based or gradient-index 
+        elements might broaden the angular range or cloak more complex shapes. Additionally, a more rigorous quantitative mapping 
+        (e.g., measuring intensity profiles with and without the object at various angles) would offer a deeper analytical understanding.
     </p>
 </section>
 
 <section id="conclusion">
-    <h2>Conclusions & Reflection</h2>
+    <h2>Conclusions & Reflections</h2>
     <p>
-        We successfully created a rudimentary optical cloak. The effect was fragile and limited, but unmistakable for small objects 
-        and precise viewing angles. The donut-shaped cloaking region and the angle dependence matched theoretical expectations. 
-        Gaining these insights required interdisciplinary thinking—combining geometric optics design, meticulous mechanical alignment, 
-        and hands-on troubleshooting.
+        We successfully built and demonstrated a functional optical cloak that matches theoretical predictions for a simple four-lens 
+        setup. The angle-dependent, donut-shaped cloaking region appeared as expected, and smaller objects consistently vanished for 
+        a narrow viewing angle range.
     </p>
     <p>
-        This project taught us more than just how to make something “disappear.” We learned what it means to push optical systems to 
-        their limits, how sensitive they are to tiny deviations, and how implementing even a “simple” concept in real optics demands 
-        patience and creativity. It was a fitting culmination of our optics coursework, blending theory, practice, and a hint of magic.
+        This project advanced our understanding of how idealized optical designs translate into real devices. It underscored the importance 
+        of quantitative tools—like ABCD matrices and precise focal length relationships—to guide design and interpret deviations. In short, 
+        it was a rich exercise in applying theoretical optics to produce a tangible optical phenomenon.
     </p>
 </section>
 
 <section id="credits">
-    <h2>Credits</h2>
-    <p><strong>Contributions:</strong></p>
+    <h2>Acknowledgments</h2>
     <ul>
-        <li>Adri: Intro, Theory, Observations, Numerical Measurements.</li>
-        <li>Angelina: Inspiration, Key Learning Objectives, Experimental Setup, Fine Adjustments.</li>
-        <li>Evelyn: Detailed Observations, Results, Conclusions, Photography.</li>
-        <li>Vassilis: Intro, Setup Verification, Troubleshooting, Angle Dependence Testing.</li>
+        <li><strong>Adri:</strong> Introduction, Theory, Observations, Quantitative Measurements</li>
+        <li><strong>Angelina:</strong> Inspiration, Key Objectives, Setup & Alignment</li>
+        <li><strong>Evelyn:</strong> Observations, Results, Conclusions, Photography</li>
+        <li><strong>Vassilis:</strong> Setup Verification, Angle Dependence Testing</li>
     </ul>
-
     <p><strong>Sources:</strong></p>
     <ul>
         <li>Choi and Howell, "Paraxial Ray Optics Cloaking"</li>
         <li>University of Rochester Newscenter (Rochester Cloak)</li>
+        <li>Hecht, E., <em>Optics</em>, on ABCD matrices and ray transfer analysis</li>
     </ul>
 </section>
 
 <footer>
     <p>EE134 Final Project, March 2024</p>
-    <p>Thank you for reading!</p>
+    <p>&copy; Team: Adri, Evelyn, Vassilis, Angelina</p>
 </footer>
 
 </body>
