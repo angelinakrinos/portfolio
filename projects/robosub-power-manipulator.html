@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robosub Underwater Manipulator Arm - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <h1>Robosub: Underwater Robotic Manipulator Integration</h1>
+        <p>
+            <strong>Team:</strong> Stanford Robosub 2024<br>
+            <strong>My Role:</strong> Electrical and Systems Integration Lead for the Underwater Manipulator Arm<br>
+            Within the Robosub project, I focused on integrating an underwater manipulator arm with our Autonomous Underwater Vehicle (AUV). 
+            The primary aim was to achieve reliable actuation and tool manipulation capabilities under harsh marine conditions. 
+            We combined mechanical, electrical, and software considerations to develop a compact, robust arm with a subsea-rated servo drive 
+            and sensor fusion for precise positioning.
+        </p>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#overview">Overview & Strategy</a></li>
+            <li><a href="#mechanical-design">Mechanical Design & Materials</a></li>
+            <li><a href="#actuation">Actuation & Control</a></li>
+            <li><a href="#kinematics">Kinematics & Motion Planning</a></li>
+            <li><a href="#integration">AUV Integration & Challenges</a></li>
+            <li><a href="#testing">Testing & Iteration</a></li>
+            <li><a href="#outcomes">Key Outcomes & Learnings</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>1. Overview & Competition Strategy</h2>
+            <p>
+                The Robosub 2024 competition challenged us to perform complex underwater tasks requiring precise manipulation, 
+                such as interacting with markers, opening valves, and handling objects autonomously. Our strategy was to develop a 
+                reliable, simple manipulator arm system integrated into the AUV’s broader localization and perception suite. 
+                We aimed to avoid unnecessary complexity while ensuring that the arm could be used as a foundational platform 
+                for future teams to expand upon.
+            </p>
+        </section>
+
+        <!-- Mechanical Design -->
+        <section id="mechanical-design">
+            <h2>2. Mechanical Design & Materials</h2>
+            <p>
+                The manipulator’s structure was informed by both space and robustness constraints. The arm features multiple 
+                degrees of freedom (typically 4-6 DOF), using high-strength corrosion-resistant alloys (e.g., anodized aluminum 6061 T6, 
+                stainless steel 316) and sealed bearings. We considered hydrodynamic effects, buoyancy, and load capacity to ensure 
+                controlled movements in all orientations.
+            </p>
+
+            <!-- Placeholder for manipulator CAD rendering -->
+            <div class="image-container">
+                <img src="images/robosub-manipulator-cad.png" alt="CAD Rendering of Underwater Manipulator">
+                <p class="img-caption">Figure 1: Preliminary CAD Model of the Underwater Manipulator Arm</p>
+            </div>
+        </section>
+
+        <!-- Actuation & Control -->
+        <section id="actuation">
+            <h2>3. Actuation & Control</h2>
+            <p>
+                We integrated an underwater-rated servo system with sealed BLDC motors and harmonic drive gears for low backlash 
+                and high torque density. The electrical architecture included proper power conditioning for the servo and custom 
+                circuit boards to interface with the AUV's main computer. Software-level closed-loop control and current sensing 
+                allowed stable operation despite external disturbances.
+            </p>
+            <p>
+                To cope with the nonlinearities of underwater environments, PID-based joint controllers and advanced model-based 
+                methods (feedforward compensation) were considered. While initial implementation relied on classical PD loops 
+                with gain tuning, we planned eventual adoption of adaptive or robust controllers as we refined the arm’s hydrodynamic model.
+            </p>
+        </section>
+
+        <!-- Kinematics & Motion Planning -->
+        <section id="kinematics">
+            <h2>4. Kinematics & Motion Planning</h2>
+            <p>
+                We developed inverse kinematics (IK) routines to allow task-level control (e.g., “move the gripper here”) rather than 
+                joint-by-joint teleoperation. The manipulator’s DOF count allowed sufficient workspace coverage to reach targets 
+                identified by the AUV’s vision system. Our control stack included:
+            </p>
+            <ul>
+                <li><strong>Forward & Inverse Kinematics:</strong> Real-time computation to map between joint space and Cartesian space.</li>
+                <li><strong>Trajectory Planning:</strong> Smooth path generation with minimal jerk, leveraging cubic or quintic splines.</li>
+                <li><strong>Task-Level Priority:</strong> Prepared to add secondary objectives (e.g., avoid vehicle thrusters, maintain camera view).</li>
+            </ul>
+        </section>
+
+        <!-- AUV Integration & Challenges -->
+        <section id="integration">
+            <h2>5. Integration with the AUV</h2>
+            <p>
+                The arm’s design had to align with the AUV’s structural frame and internal electronics bay. We routed power and 
+                data lines through pressure-compensated housings. The AUV’s limited payload capacity and volume constraints 
+                forced careful trade-offs between arm length, torque capability, and operational depth rating. 
+                Additionally, mounting location influenced sensor placement and hydrodynamic efficiency.
+            </p>
+            <p>
+                Coordinated control between the manipulator and AUV motion was a key consideration. Maintaining stable hover 
+                while operating the arm required integrating vehicle navigation, thruster control, and manipulator command signals. 
+                We investigated feedforward terms based on manipulator kinematics to help the AUV’s controller anticipate shifts 
+                in center of gravity and reduce unwanted vehicle motion.
+            </p>
+
+            <!-- Placeholder for integration diagram -->
+            <div class="image-container">
+                <img src="images/manipulator-integration.png" alt="Integration Diagram of Manipulator and AUV">
+                <p class="img-caption">Figure 2: System Integration Diagram (Placeholder)</p>
+            </div>
+        </section>
+
+        <!-- Testing & Iteration -->
+        <section id="testing">
+            <h2>6. Testing & Iteration</h2>
+            <p>
+                Our testing strategy included incremental pool trials, vacuum pressure tests for sealing, and in-lab simulations 
+                using Gazebo ROS plugins for motion planning validation. We performed underwater calibration of joint encoders 
+                and tested grip strength on standardized T-bar handles. Persistent challenges included:
+            </p>
+            <ul>
+                <li><strong>Overheating:</strong> Addressed by adding small heatsinks and refining current profiles.</li>
+                <li><strong>Waterproofing:</strong> Verified through vacuum pulls before submerging, ensuring stable internal pressure.</li>
+                <li><strong>Communication Latency:</strong> Tested tethered and wireless acoustic links, focusing on stable real-time feedback.</li>
+            </ul>
+
+            <!-- Placeholder for test results PDF -->
+            <p><a href="docs/manipulator-test-report.pdf" target="_blank">View Full Test Report (PDF)</a></p>
+        </section>
+
+        <!-- Outcomes & Learnings -->
+        <section id="outcomes">
+            <h2>7. Key Outcomes & Learnings</h2>
+            <p>
+                Through this integration, I strengthened my understanding of system-level design for underwater robotics. Key learnings included:
+            </p>
+            <ul>
+                <li><strong>Systems Engineering:</strong> Balancing mechanical constraints, hydrodynamic forces, and sensor integration is crucial.</li>
+                <li><strong>Robust Control:</strong> Simple PID loops gave baseline performance, but future improvements include adaptive control and force feedback.</li>
+                <li><strong>Kinematic Complexity:</strong> Using IK and trajectory planning improved task efficiency and operator workload.</li>
+                <li><strong>Manufacturability & Maintenance:</strong> Ensuring easy access to the arm’s electronics and connectors accelerated iteration and reduced downtime.</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion">
+            <h2>8. Conclusion</h2>
+            <p>
+                Integrating the manipulator arm into the Robosub AUV provided a foundation for future advanced intervention tasks. 
+                Although we maintained a careful strategy focusing on reliability and simplicity, the groundwork was laid for more 
+                complex autonomous manipulation scenarios. The insights gained here—ranging from control strategies in a fluid environment 
+                to coordinated vehicle-arm maneuvers—will guide subsequent iterations and push toward more robust, fully autonomous 
+                underwater robotic systems.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | Always learning, always exploring.</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
+
+</body>
+</html>
