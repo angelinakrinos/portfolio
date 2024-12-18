@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class D Amplifier Lab Summary</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>EE101B Lab 5: Class D Audio Amplifier</h1>
+        <p><strong>Goal:</strong> Build and characterize a class-D amplifier using the TI TPA3122D2 IC and measure its performance.</p>
+    </header>
+
+    <section id="setup">
+        <h2>Setup & Assembly</h2>
+        <p>
+            The project started with a blank perfboard, a 20-pin DIP socket for the amplifier IC, and a collection of 
+            specified components (resistors, ceramic and electrolytic capacitors, inductors). We attached standoffs for a stable 
+            build platform and carefully soldered each component, checking polarity for electrolytics and ensuring no shorts 
+            between VCC and GND before inserting the amplifier IC. 
+        </p>
+        <p>
+            During the first week, we installed the core decoupling capacitors and essential biasing resistors to keep the 
+            amplifier enabled and set to maximum gain. After verifying that all power rails were correct and the IC didn’t 
+            heat excessively at idle (just VCC connected), we measured the quiescent current (about 20mA) and confirmed 
+            a modulation frequency of around 250 kHz at the output with no input signal.
+        </p>
+    </section>
+
+    <section id="filters">
+        <h2>Adding Input/Output Filters & Final Test</h2>
+        <p>
+            In the second week, we populated the input and output LC filters and DC-blocking capacitors. The inductors chosen 
+            were 47μH (instead of 22μH) and the coupling caps were adjusted per the provided BOM differences. This filtering 
+            stage was critical to remove unwanted high-frequency switching noise and to prevent DC offset from reaching the 
+            load resistor or the speakers.
+        </p>
+    </section>
+
+    <section id="measurements">
+        <h2>Measurements & Observations</h2>
+        <h3>THD and Frequency Response</h3>
+        <p>
+            With a 1kHz input sine wave at around 50mV and a 10Ω load, we measured the output waveform. The output amplitude 
+            reached about 6.4V peak-to-peak, and we noted a THD (Total Harmonic Distortion) of about 0.041, which is quite 
+            acceptable for a simple class-D setup. The LC and DC-blocking components effectively filtered the output, as shown 
+            by a Bode-like magnitude plot from 10Hz to 50kHz. At low frequencies (10Hz), we saw reduced amplitude, as expected 
+            (about 420mV p-p), while at 1kHz and above, the signal amplitude increased to around 6.3–6.5V p-p. High-frequency 
+            roll-off was observed, confirming the filter’s role in removing unwanted switching harmonics.
+        </p>
+
+        <h3>Efficiency</h3>
+        <p>
+            We measured supply current and load power to estimate efficiency. Starting at about 50mV input, we got around 64.22%. 
+            Increasing input voltage to 60mV, then 70mV, bumped efficiency to ~67.93% and ~68.57%, respectively. Higher output 
+            levels made the circuit more efficient. 
+        </p>
+    </section>
+
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>
+            The class-D amplifier performed as intended. After careful assembly and verification, we achieved a stable output, 
+            relatively low THD, and a decent efficiency that improved with higher output levels. The LC and DC-blocking network 
+            effectively shaped the frequency response, ensuring a cleaner audio signal. While the lab was challenging—requiring 
+            meticulous soldering and debugging—the end result was a working class-D amplifier capable of driving a speaker load 
+            with reasonable fidelity and efficiency.
+        </p>
+    </section>
+
+    <footer>
+        <p><strong>Note:</strong> Always double-check component orientations and pin connections before powering the circuit. 
+        Improper polarity on electrolytics or reversed connections can damage components.</p>
+    </footer>
+
+</body>
+</html>
