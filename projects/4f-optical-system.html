@@ -3,80 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4F Optical System: Spectroscopy for Quantum Materials</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <title>4F Optical System: Spectroscopy for Quantum Materials - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 
-<header>
-    <h1>4F Optical System: Spectroscopy for Quantum Materials</h1>
-    <p><strong>Author:</strong> Angelina Krinos</p>
-</header>
+    <header class="project-header">
+        <h1>4F Optical System: Spectroscopy for Quantum Materials</h1>
+        <p>
+            In advanced quantum materials research, precise optical characterization is key. I assisted in setting up 
+            a 4F optical system to enhance photoluminescence (PL) spectroscopy measurements, facilitating clearer 
+            spectral lines and improved data quality for studying color centers in diamond, hBN, and related quantum 
+            systems.
+        </p>
+    </header>
 
-<section id="introduction">
-    <h2>Project Overview</h2>
-    <p>
-        In cutting-edge quantum materials research—particularly with solid-state spin qubits and color centers—extracting 
-        detailed optical and spin information often comes down to careful control of the photons entering and leaving 
-        your sample. I assisted in setting up a 4F optical system to perform photoluminescence (PL) spectroscopy, a crucial 
-        step towards more precise characterization of color centers in diamond and hBN, as well as other promising quantum materials.
-    </p>
-    <p>
-        This kind of 4F configuration uses two lenses to create a one-to-one image relay, allowing selective filtering and 
-        spatial manipulation of the beam within the Fourier plane. By integrating beam splitters, bandpass filters, and 
-        confocal imaging elements, we tuned our system for better signal-to-noise ratios, improved spectral resolution, 
-        and cleaner detection of the emission lines from the materials under study.
-    </p>
-</section>
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#introduction">Introduction & Goals</a></li>
+            <li><a href="#principles">4F Optical Principles & Configuration</a></li>
+            <li><a href="#setup">System Setup & Alignment</a></li>
+            <li><a href="#results">Results & Impact on Research</a></li>
+            <li><a href="#learnings">Key Learnings & Takeaways</a></li>
+            <li><a href="#future">Next Steps & Outlook</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
 
-<section id="setup">
-    <h2>4F Optical Setup Details</h2>
-    <ul>
-        <li><strong>Fourier Plane Filtering:</strong> By placing spatial filters or frequency-selective elements in the 
-            Fourier plane between the two lenses, we can isolate certain modes or wavelengths, enhancing measurement clarity.</li>
-        <li><strong>Lenses & Alignment:</strong> We used well-characterized lenses with matching focal lengths, precisely 
-            aligned on an optical rail. Adjusting lens separations and angles ensured that the image formed at the final 
-            focal plane had minimal aberrations.</li>
-        <li><strong>Integration with Spectrometer:</strong> The output beam from the 4F line was directed into a spectrometer, 
-            enabling high-resolution PL measurements. This setup facilitated accurate mapping of zero-phonon lines (ZPLs) and 
-            other spectral features critical for identifying and characterizing spin qubit centers.</li>
-    </ul>
-</section>
+    <main>
 
-<section id="results">
-    <h2>Impact on Quantum Materials Research</h2>
-    <p>
-        The improved 4F optical system translated directly into more trustworthy data. By trimming unwanted background 
-        light and sharpening spectral peaks, we could identify subtle shifts in emission lines, detect changes in 
-        intensity under different excitation conditions, and correlate those variations to spin properties in the 
-        material’s defect centers.
-    </p>
-    <p>
-        These enhancements make the system more robust for ongoing experiments: from characterizing new samples with 
-        unknown defects to refining protocols for optical readout of spin states. Ultimately, this 4F optical 
-        configuration helps bridge the gap between theoretical quantum material predictions and experimental confirmation, 
-        pushing our understanding and control of quantum defects forward.
-    </p>
-</section>
+        <section id="introduction">
+            <h2>1. Introduction & Goals</h2>
+            <p>
+                Characterizing quantum defects in solid-state materials often hinges on extracting high-quality optical 
+                signals. Our aim: implement a 4F optical relay to improve filtering and imaging of the sample’s PL signal, 
+                enabling more robust spectral measurements and reducing unwanted background noise.
+            </p>
+            <p>
+                By carefully tailoring the optical path, we can isolate subtle emission lines, identify zero-phonon 
+                lines (ZPLs), and correlate spectral shifts with changes in spin states or external stimuli.
+            </p>
+        </section>
 
-<section id="learnings">
-    <h2>Lessons Learned</h2>
-    <ul>
-        <li><strong>Precision & Stability:</strong> Good optical alignment isn’t just about getting rid of stray reflections—it’s crucial for stable, reproducible spectra.</li>
-        <li><strong>System Iteration:</strong> Fine-tuning lens positions, adding or removing filters, and adjusting beam split ratios taught me how flexible a 4F system can be.</li>
-        <li><strong>Collaborative Insights:</strong> Working alongside physicists and engineers in the lab underscored how optical design directly influences the scientific yield of quantum materials research.</li>
-    </ul>
-</section>
+        <section id="principles">
+            <h2>2. 4F Optical Principles & Configuration</h2>
+            <p>
+                A 4F system uses two lenses in series, each placed one focal length away from the intermediate Fourier plane. 
+                This configuration allows spatial filtering by placing apertures or frequency-selective elements in the 
+                Fourier plane, effectively modifying the beam’s mode structure.
+            </p>
+            <p>
+                Implementing beam splitters, narrow bandpass filters, or polarization elements in the Fourier plane 
+                refines the output beam heading into the spectrometer, ensuring cleaner line shapes and better 
+                signal-to-noise ratios.
+            </p>
+        </section>
 
-<section id="conclusion">
-    <h2>Conclusion</h2>
-    <p>
-        Setting up a 4F optical system for PL spectroscopy wasn’t just a technical exercise—it was a key step toward 
-        higher-fidelity data and better-informed insights into the properties of quantum defects. By combining standard 
-        optical elements with careful engineering, the system advances our experimental capabilities, enabling more 
-        nuanced investigations of quantum materials and the spin qubits they host.
-    </p>
-</section>
+        <section id="setup">
+            <h2>3. System Setup & Alignment</h2>
+            <p>
+                I helped mount the lenses and adjustable filter holders on an optical rail. The key steps:
+            </p>
+            <ul>
+                <li><strong>Alignment:</strong> Ensuring each lens was positioned precisely at its focal distance 
+                    from the Fourier plane.</li>
+                <li><strong>Filter Insertion:</strong> Placing bandpass filters or spatial apertures at the Fourier plane 
+                    to reject unwanted modes.</li>
+                <li><strong>Integration with Spectrometer:</strong> The filtered beam was directed into a spectrometer’s 
+                    entrance slit, capturing improved PL spectra.</li>
+            </ul>
+            <p>
+                Fine adjustments in lens tilt and filter placement helped minimize aberrations and ensure stable, repeatable measurements.
+            </p>
+        </section>
+
+        <section id="results">
+            <h2>4. Results & Impact on Research</h2>
+            <p>
+                The improved optical setup led to sharper spectral peaks, enabling the detection of subtle ZPLs and 
+                emission lines previously drowned out by background light. With cleaner data, we could more confidently 
+                attribute spectral features to specific defects or spin states, advancing the group’s understanding of 
+                quantum materials.
+            </p>
+            <p>
+                This system makes future experiments more efficient, reducing the time spent troubleshooting optical noise 
+                and enhancing the reproducibility of results.
+            </p>
+        </section>
+
+        <section id="learnings">
+            <h2>5. Key Learnings & Takeaways</h2>
+            <ul>
+                <li><strong>Optical Alignment Skills:</strong> Even a millimeter off in lens spacing can degrade results, 
+                    underlining the importance of careful setup.</li>
+                <li><strong>System Flexibility:</strong> The 4F system’s modular nature allows quick swapping of filters or apertures, 
+                    making it versatile for different sample types.</li>
+                <li><strong>Collaborative Environment:</strong> Working alongside physicists and engineers taught me how optical 
+                    design directly enhances scientific outcomes.</li>
+            </ul>
+        </section>
+
+        <section id="future">
+            <h2>6. Next Steps & Outlook</h2>
+            <p>
+                Potential enhancements include adding automated filter wheels or coupling the 4F system with scanning 
+                stages to map spatial emission variations. Exploring more advanced optical elements (e.g., spatial light 
+                modulators) could further refine mode control.
+            </p>
+        </section>
+
+        <section id="conclusion">
+            <h2>7. Conclusion</h2>
+            <p>
+                Building and refining the 4F optical setup was a hands-on lesson in how precision optics elevate experimental 
+                quality. With improved PL spectroscopy, we can push deeper into the quantum material landscape, identifying 
+                and characterizing novel defects and spin qubits, and ultimately driving forward the frontiers of quantum engineering.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | Quantum Materials Project</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
 
 </body>
 </html>
