@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptual Design of a School-Scale Fusion Reactor - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <h1>Conceptual Design of a Small-Scale Fusion Demonstration System</h1>
+        <p>
+            This document captures my initial engineering approach, calculations, and planning for building a 
+            compact, school-based fusion demonstration system. Although we haven’t started actual construction, 
+            the groundwork—detailed parameter studies, cost estimates, safety considerations, and regulatory inquiries— 
+            lays the foundation for eventually turning theory into reality.
+        </p>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#introduction">Introduction & Objectives</a></li>
+            <li><a href="#principles">Fusion Principles & Intended Approach</a></li>
+            <li><a href="#parameters">Defining Operating Parameters</a></li>
+            <li><a href="#highvoltage">High-Voltage Supply Challenges</a></li>
+            <li><a href="#vacuum">Vacuum & Gas Handling</a></li>
+            <li><a href="#safety">Radiation Safety & Shielding</a></li>
+            <li><a href="#regulations">Regulatory & Compliance Considerations</a></li>
+            <li><a href="#equipment">Equipment Sourcing & Preliminary Budget</a></li>
+            <li><a href="#nextsteps">Next Steps & Outlook</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="introduction">
+            <h2>1. Introduction & Objectives</h2>
+            <p>
+                The concept is straightforward on paper: use an inertial electrostatic confinement (IEC) approach 
+                to encourage deuterium ions to fuse, producing a measurable (though modest) neutron flux. 
+                The main objective is educational: I want to gain firsthand experience with high-voltage engineering, 
+                vacuum technology, and safe handling of low-level nuclear processes. The final setup should allow 
+                us to confirm neutron production, providing a tangible demonstration of fusion physics at a 
+                scale accessible to a high-school environment.
+            </p>
+        </section>
+
+        <section id="principles">
+            <h2>2. Fusion Principles & Intended Approach</h2>
+            <p>
+                The intended method is a Farnsworth-Hirsch fusor configuration. By creating a stable plasma within 
+                a vacuum chamber and applying a substantial DC voltage (tens of kV), deuterium ions are accelerated 
+                toward a central grid, where collisions can lead to fusion. While no net energy gain is expected, 
+                detecting the characteristic neutrons provides a clear signature of success.
+            </p>
+            <p>
+                Early theoretical estimates suggest that operating at around 20-50 kV and a few milliamps of current 
+                could yield a modest but detectable neutron count (~10<sup>3</sup>–10<sup>5</sup>/s). Verifying this 
+                experimentally is the core challenge.
+            </p>
+        </section>
+
+        <section id="parameters">
+            <h2>3. Defining Operating Parameters</h2>
+            <p>
+                Before even considering equipment, I set some baseline parameters:
+            </p>
+            <ul>
+                <li><strong>Voltage:</strong> 20–50 kV DC</li>
+                <li><strong>Current:</strong> ~1–5 mA</li>
+                <li><strong>Chamber Pressure:</strong> 10<sup>-4</sup> to 10<sup>-5</sup> Torr (requiring a decent 
+                vacuum system plus a fine deuterium feed)</li>
+            </ul>
+            <p>
+                At ~25 kV and ~5 mA, power consumption hovers around 125 W—manageable, but dangerous in terms of 
+                voltage level. A rough energy calculation guided me to confirm that such levels are common in amateur 
+                fusors yet demand strict insulation and grounding strategies.
+            </p>
+        </section>
+
+        <section id="highvoltage">
+            <h2>4. High-Voltage Supply Challenges</h2>
+            <p>
+                The high-voltage supply is likely the hardest puzzle. Commercial lab-grade HV supplies (20-50 kV) 
+                can be expensive. On the other hand, makeshift setups from neon sign transformers and homemade 
+                multipliers are cheaper but less stable and riskier.
+            </p>
+            <p>
+                Current plan: Start by considering a used commercial HV supply for reliability and safety. This might 
+                cost $1,500-$2,500 alone. I’m also sketching out insulation requirements. At 30 kV, even a tiny void 
+                can trigger corona or arc-over. I need careful conductor geometry, oil or epoxy potting for high-voltage 
+                components, and a proper enclosure. Built-in current limiting and a fast trip circuit will reduce the 
+                likelihood of catastrophic failures.
+            </p>
+        </section>
+
+        <section id="vacuum">
+            <h2>5. Vacuum & Gas Handling</h2>
+            <p>
+                Achieving the desired pressure range likely means a two-stage approach: a rotary vane pump to get 
+                down to ~10<sup>-3</sup> Torr, then a turbo or diffusion pump for the next two orders of magnitude. 
+                Used vacuum pumps and stainless steel chambers appear frequently on the secondhand market.
+            </p>
+            <p>
+                The chamber will probably be a small stainless steel sphere or cylinder (6–8 inch diameter), fitted 
+                with standard KF or CF flanges. I’ll incorporate a leak valve or mass flow controller for deuterium, 
+                targeting a stable partial pressure to maintain a glow discharge plasma. While the vacuum system 
+                isn’t cheap, careful shopping might keep it under $1,000.
+            </p>
+        </section>
+
+        <section id="safety">
+            <h2>6. Radiation Safety & Shielding</h2>
+            <p>
+                The fusion process will produce neutrons. Although at low rates, I need a shielding plan. Hydrogen-rich 
+                materials like polyethylene help moderate neutrons, and adding boron compounds (boric acid in water 
+                or borated polyethylene) captures them. A simple layered approach—HDPE blocks around the chamber and a 
+                boron-based absorber—should suffice. The aim is to keep any dose negligible.
+            </p>
+            <p>
+                I’m considering a small He-3 or BF<sub>3</sub> neutron detector for verification. This instrumentation 
+                will confirm fusion events. It’s crucial that all radiation measurements comply with local guidelines. 
+                I will document and limit test run durations to ensure minimal exposure.
+            </p>
+        </section>
+
+        <section id="regulations">
+            <h2>7. Regulatory & Compliance Considerations</h2>
+            <p>
+                Even though no fissile material is involved, I must consider the following:
+            </p>
+            <ul>
+                <li><strong>School Administration Approval:</strong> Written permission from the school principal 
+                and science department.</li>
+                <li><strong>Local Authorities:</strong> Possibly informing local health physics officials about the 
+                project. Ensuring compliance with local radiation guidelines is a priority.</li>
+                <li><strong>Electrical Codes:</strong> High voltage demands adherence to electrical safety codes, proper 
+                grounding, and possibly external inspection.</li>
+            </ul>
+            <p>
+                I’ll finalize these steps before any hardware arrives, ensuring we have all clearances and safety 
+                directives in place.
+            </p>
+        </section>
+
+        <section id="equipment">
+            <h2>8. Equipment Sourcing & Preliminary Budget</h2>
+            <p>
+                I’ve priced out a rough bill of materials:
+            </p>
+            <ul>
+                <li>HV Power Supply: ~$1,500–$2,500 (used, high-voltage DC supply)</li>
+                <li>Vacuum System (pumps, valves, chamber): ~$1,000–$1,500</li>
+                <li>Deuterium Gas & Flow Components: ~$300–$500</li>
+                <li>Neutron Detector & Shielding Materials: ~$500–$1,000</li>
+            </ul>
+            <p>
+                The total initial outlay might be $3,500–$5,500. This is not trivial for a school-based project, 
+                so grant applications, department funding, and possibly community sponsorship are on my radar.
+            </p>
+        </section>
+
+        <section id="nextsteps">
+            <h2>9. Next Steps & Outlook</h2>
+            <p>
+                Before committing funds, my plan is:
+            </p>
+            <ul>
+                <li>Secure all administrative and safety approvals</li>
+                <li>Reach out to local universities or research labs for guidance and possibly borrowing some instruments</li>
+                <li>Order a basic vacuum pump and test vacuum integrity on a simple chamber mock-up</li>
+                <li>Refine HV supply selection based on safety and reliability, then purchase the main unit</li>
+            </ul>
+            <p>
+                If all goes well, the first plasma tests—without deuterium—could occur a few months after initial equipment 
+                arrival. Deuterium introduction and neutron detection would follow. The ultimate goal: a confirmable set of 
+                fusion runs, fully documented, safe, and hopefully inspiring future engineering projects at our school.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | Preliminary Engineering Report</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
+
+</body>
+</html>
