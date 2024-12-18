@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSI Europa Boat: Navigation Design for Exploration of Mars' Moons - Angelina Krinos</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <h1>SSI Europa Boat: Navigation Design for Exploration of Mars' Moons</h1>
+        <p>
+            This page outlines the early-stage engineering and design work for creating an autonomous, solar-powered 
+            boat, inspired by the robust capabilities of long-endurance ocean drones and the forward-looking challenge 
+            of navigating remote environments—like those on Mars' moons. While our end goal is ambitious, we’re currently 
+            taking practical, incremental steps: assembling hardware, integrating electronics, and testing scaled-down 
+            prototypes to guide us forward.
+        </p>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+            <li><a href="#introduction">Introduction & Vision</a></li>
+            <li><a href="#concept">Initial Concept & Materials</a></li>
+            <li><a href="#stability">Focus on Stability & Self-Righting</a></li>
+            <li><a href="#power">Power & Propulsion Setup</a></li>
+            <li><a href="#navigation">Navigation, Comms & Sensor Integration</a></li>
+            <li><a href="#testing">Prototyping & Preliminary Tests</a></li>
+            <li><a href="#future">Long-Term Outlook</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="introduction">
+            <h2>1. Introduction & Vision</h2>
+            <p>
+                Drawing inspiration from drone ships like Saildrone’s platforms and imagining what navigation 
+                might require on distant celestial oceans, this project aims to produce a robust, self-sufficient 
+                autonomous vessel. While we talk about “Europa” and Mars’ moons as a guiding theme, we’re firmly 
+                grounded on Earth: the immediate goal is a stable, solar-powered boat that can handle real-world 
+                oceanic conditions and collect environmental data autonomously.
+            </p>
+        </section>
+
+        <section id="concept">
+            <h2>2. Initial Concept & Materials</h2>
+            <p>
+                Our starting point: a 12 ft resin fishing boat sourced from Bass Pro Shops. Over this, we plan to 
+                mount an A-frame array of ten 100W solar panels. For propulsion, a 12V outboard motor (36 lbf thrust) 
+                and a 50 Ah marine battery will allow slow but continuous operation. The core idea is to test 
+                self-sufficiency and endurance on a modest scale—no custom hull design just yet, but a practical 
+                starting point.
+            </p>
+        </section>
+
+        <section id="stability">
+            <h2>3. Focus on Stability & Self-Righting</h2>
+            <p>
+                Ensuring the boat can survive harsh conditions is crucial. We plan to incorporate a keel weight 
+                below the hull, making the boat stable only when upright. If it capsizes, gravity and buoyancy 
+                should realign it. The A-frame solar panel structure and potentially adding foam inside the hull 
+                will help manage water ingress and prevent pooling, further enhancing stability.
+            </p>
+        </section>
+
+        <section id="power">
+            <h2>4. Power & Propulsion Setup</h2>
+            <p>
+                With approximately 1 kW from the solar panels and a 640 W motor draw, we’re aiming for a balanced 
+                power budget. The boat might not be fast, but it should be steady and capable of running 
+                indefinitely under good sunlight conditions. Steering is handled by a 125 kgf servo directing 
+                the outboard motor’s angle.
+            </p>
+            <p>
+                On the electrical engineering (EE) side, I’ve contributed to selecting suitable wiring, ensuring 
+                correct voltage regulation, and planning for safe interconnects between the battery, motor 
+                controller, and servo drive. Balancing power flows and protecting components are key EE design 
+                concerns.
+            </p>
+        </section>
+
+        <section id="navigation">
+            <h2>5. Navigation, Comms & Sensor Integration</h2>
+            <p>
+                We’re leveraging ArduPilot’s boat configuration on a Pixhawk flight controller paired with GPS 
+                for waypoint navigation. A Raspberry Pi 4 will log data (e.g., temperature, humidity, pressure) 
+                and possibly integrate a hydrophone for underwater acoustic data. We’ll use a RockBLOCK satellite 
+                modem to relay status updates back home.
+            </p>
+            <p>
+                My contributions on the systems side include integrating these electronics: mounting sensors, 
+                setting up the Pi for data acquisition, and configuring basic communication protocols. It’s 
+                still early, but we’ve done enough dry runs to confirm the Pi logs data reliably and the satellite 
+                link can send short messages.
+            </p>
+        </section>
+
+        <section id="testing">
+            <h2>6. Prototyping & Preliminary Tests</h2>
+            <p>
+                We’re not jumping straight into the ocean. Our first test platform is a smaller “bait boat” 
+                prototype—much more manageable and less risky for initial experiments. We’ve tested basic 
+                maneuvering in calm waters, verifying that the RC mode, motor control, and partial solar 
+                charging work as expected.
+            </p>
+            <p>
+                Next, we’ll graduate to the 12 ft resin boat, first doing loops in a local lake to test 
+                self-righting and waypoint navigation. After that, maybe the SF Bay for longer trials. 
+                Each step helps us refine mechanical setups, EE interfaces, and software code before tackling 
+                larger challenges.
+            </p>
+        </section>
+
+        <section id="future">
+            <h2>7. Long-Term Outlook</h2>
+            <p>
+                Ultimately, we imagine pushing the boat to travel farther offshore, maybe even attempt reaching 
+                places like Point Nemo. The lessons learned in incremental testing—power budgeting, communication 
+                resilience, navigation reliability—could, in theory, inform how we might design exploratory 
+                craft for alien oceans someday.
+            </p>
+        </section>
+
+        <section id="conclusion">
+            <h2>8. Conclusion</h2>
+            <p>
+                Right now, this project is still in a design-focused, scrappy, early-prototyping stage. We’re 
+                piecing together off-the-shelf parts, testing our first systems on a small scale, and learning 
+                as we go. My role in both EE design and general systems integration ensures that as we progress, 
+                we stay grounded in practicality while keeping our sights on a big-picture vision.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; 2024 Angelina Krinos | SSI Europa Boat Concept</p>
+        <p><a href="../index.html">Back to Portfolio Home</a></p>
+    </footer>
+
+</body>
+</html>
